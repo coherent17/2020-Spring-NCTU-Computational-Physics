@@ -24,6 +24,9 @@ def function3():
 print(function1())
 print(function2(1000))
 print(function3())
+# 500500
+# 500500
+# 77.51389798916512
 
 #oriented object programming
 class physic_calculation:
@@ -54,6 +57,9 @@ print("---------------OOP----------------")
 print(pc.function_a())
 print(pc.function_b(1000))
 print(pc.function_c())
+# 500500
+# 500500
+# 77.51389798916512
 
 print("---------------numpy----------------")
 a=np.arange(1,26).reshape(5,5)

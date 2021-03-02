@@ -12,6 +12,7 @@ def function2(m):
     for i in range(1,m+1):
         value+=i
     return value
+    
 #2
 def function3():
     value=0
@@ -48,6 +49,7 @@ class physic_calculation:
         return value3
 
 pc=physic_calculation()
+print("---------------OOP--------------")
 print(pc.function_a())
 print(pc.function_b(1000))
 print(pc.function_c())

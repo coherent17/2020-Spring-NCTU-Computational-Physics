@@ -49,7 +49,7 @@ class physic_calculation:
         return value3
 
 pc=physic_calculation()
-print("---------------OOP--------------")
+print("---------------OOP----------------")
 print(pc.function_a())
 print(pc.function_b(1000))
 print(pc.function_c())

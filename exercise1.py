@@ -1,4 +1,5 @@
 import math 
+import numpy as np
 #1-a
 def function1():
     value=0
@@ -53,3 +54,12 @@ print("---------------OOP----------------")
 print(pc.function_a())
 print(pc.function_b(1000))
 print(pc.function_c())
+
+print("---------------numpy----------------")
+a=np.arange(1,26).reshape(5,5)
+print(a)
+# [[ 1  2  3  4  5]
+#  [ 6  7  8  9 10]
+#  [11 12 13 14 15]
+#  [16 17 18 19 20]
+#  [21 22 23 24 25]]

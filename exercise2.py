@@ -6,6 +6,8 @@ A=np.array([[1,4]
 
 print("det(A)=",np.linalg.det(A))
 #det(A)= 9.000000000000002
+#the reason that 2 appear here:
+#the decimal calcuation error
 #det(A)!=0 -> not singular matrix
 # -> has unique solution
 
@@ -18,7 +20,9 @@ class Uniqueness_of_solution:
     def __init__(self):
         pass
     def judge_solution(self,A,b):
-        if np.linalg.det(A)==0:
+        #to avoid the decimal error
+        #determine by the value of the det(A)by a small float number
+        if abs(np.linalg.det(A))<0.0000001:
             print("doesn't have a unique solution")
         else:
             print("has a unique solution:")

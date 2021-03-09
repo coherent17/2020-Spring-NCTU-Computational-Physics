@@ -4,7 +4,9 @@ import math as m
 class GE_BS():
     def __init__(self):
         pass
-
+    
+    #judge whether A matrix is singular matrix or not
+    #and if A is singular matrix, is it infinite slutions or no solution?
     def judge_solution(self,A,B):
         #infinite solution or no solution (detA==0)
         if abs(np.linalg.det(A))<0.000000000001:
@@ -66,6 +68,7 @@ class GE_BS():
         
         for j in range(0,len(A)):
             print("x_",j,"=",sol[j],end="   ")
+        print("\n")
 
     def BS(self,A,B):
         pass
@@ -78,7 +81,17 @@ A=np.array([[1,-1,0,0]
 B=np.array([[160]
            ,[-40]
            ,[210]
-           ,[-330]])  
+           ,[-330]])
+
+
+#C,D,E,F, is used to test the det(A) condition so that create infinite solution and no solution
+C=np.array([[1,1]
+           ,[2,2]]) 
+D=np.array([3,5]) 
+
+E=np.array([[1,1]
+           ,[2,2]]) 
+F=np.array([3,6]) 
 
 sol=GE_BS()
 A,B=sol.GE(A,B)
@@ -96,3 +109,11 @@ sol.BS_for_traffic_flow(A,B)
 #  [  0   0   1  -1 210]
 #  [  0   0   0   0   0]]
 # x_ 0 = 430.0   x_ 1 = 270.0   x_ 2 = 310.0   x_ 3 = 100.0
+
+#when the det(A)==0 which has infinite solution or no solution
+sol.judge_solution(C, D)
+#there is no solution
+
+sol.judge_solution(E, F)
+# there are infinite solutions
+# need more information

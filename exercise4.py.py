@@ -49,15 +49,6 @@ print(np.c_[A,B])
 #  [  0   0   0   0    0]]
 
 
-A=np.array([[1,-1,0,0]
-           ,[0,1,-1,0]
-           ,[0,0,1,-1]
-           ,[-1,0,0,1]])
-
-B=np.array([[160]
-           ,[-40]
-           ,[210]
-           ,[-330]])
 
 def GE(A,B):
     for k in range(0,len(A)):
@@ -97,9 +88,9 @@ print("x_0=",sol[0])
 print("x_1=",sol[1])
 print("x_2=",sol[2])
 print("x_3=",sol[3])
+# x_0= 430.0
+# x_1= 270.0
+# x_2= 310.0
+# x_3= 100.0
 
-# def BS(A,B):
-#     if A[len(A)-1,len(A)-1]==0:
-#         print("you need to give me more value to solve the equation")
-#     else:
                

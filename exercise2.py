@@ -50,9 +50,9 @@ sol.judge_solution(C,D)
 #What if doesn't have a unique solution and using linalg.solve?
 # ans=np.linalg.solve(C,D)
 # print(ans)
-
 #terminal:
 #numpy.linalg.LinAlgError: Singular matrix
+
 
 #solve for the traffic flows
 # (x_1)-(x_2)=160

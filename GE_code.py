@@ -98,4 +98,8 @@ print("x_1=",sol[1])
 print("x_2=",sol[2])
 print("x_3=",sol[3])
 
-        
+# def BS(A,B):
+#     if A[len(A)-1,len(A)-1]==0:
+#         print("you need to give me more value to solve the equation")
+#     else:
+               

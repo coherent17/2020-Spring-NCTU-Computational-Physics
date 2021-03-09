@@ -1,5 +1,8 @@
 import numpy as np
 
+#GE and BS
+
+#GE
 A=np.array([[1,-1,0,0]
            ,[0,1,-1,0]
            ,[0,0,1,-1]
@@ -77,3 +80,22 @@ B=np.array([[160]
            ,[-330]])    
 
 A,B,total=GE(A,B)
+# [[  1  -1   0   0 160]
+#  [  0   1  -1   0 -40]
+#  [  0   0   1  -1 210]
+#  [  0   0   0   0   0]]
+
+
+#BS
+sol=np.zeros((len(A)))
+#x_4=100
+sol[3]=100
+sol[2]=(B[2]-A[2,3]*sol[3])/A[2,2]
+sol[1]=(B[1]-A[1,2]*sol[2])/A[1,1]
+sol[0]=(B[0]-A[0,1]*sol[1])/A[0,0]
+print("x_0=",sol[0])
+print("x_1=",sol[1])
+print("x_2=",sol[2])
+print("x_3=",sol[3])
+
+        

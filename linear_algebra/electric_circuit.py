@@ -13,11 +13,3 @@ B=np.array([[0]
            ,[9]])
 
 C=np.c_[A,B]
-
-def judge_zero(X):
-    for i in range(len(A)):
-        
-
-
-# def GE(A,B):
-    

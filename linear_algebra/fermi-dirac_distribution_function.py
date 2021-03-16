@@ -14,5 +14,3 @@ plt.plot(x,y_3,'k',label="T=300K")
 plt.legend()
 plt.xlabel("$ε$")
 plt.show()
-
-

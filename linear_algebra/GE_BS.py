@@ -64,8 +64,8 @@ class GE_BS():
         #x_4=100
         sol[3]=100
         for i in range(2,-1,-1):
-            sol[i]=(B[i]-A[i,i+1]*sol[i+1])/A[i,i]
-        
+            sol[i]=(B[i]-np.dot(A[i,i+1:len(A)],sol[i+1:len(A)]))/A[i,i]
+
         for j in range(0,len(A)):
             print("x_",j,"=",sol[j],end="   ")
         print("\n")

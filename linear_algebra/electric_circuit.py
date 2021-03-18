@@ -29,6 +29,7 @@ def del_zero(A,B):
     B=np.delete(B,zero_row,axis=0)
     return A,B
 
+#to deal with the condition that A[0,0]==0
 def change_row(A,B):
     if A[0,0]==0:
         temp=A[0,:]
@@ -39,7 +40,7 @@ def change_row(A,B):
         B=np.insert(B,[1],temp1,axis=0)
     return A,B
 
-
+#Gaussian Elimination
 def GE(A,B):
     for i in range(0,len(A)):
         for j in range(i+1,len(A)):

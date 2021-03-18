@@ -29,14 +29,23 @@ def del_zero(A,B):
     B=np.delete(B,zero_row,axis=0)
     return A,B
 
+def change_row(A,B):
+    if A[0,0]==0:
+        temp=A[0,:]
+        temp1=B[0]
+        A=np.delete(A,0,axis=0)
+        A=np.insert(A,[1],temp,axis=0)
+        B=np.delete(B,0,axis=0)
+        B=np.insert(B,[1],temp1,axis=0)
+    return A,B
+
+
 def GE(A,B):
     for i in range(0,len(A)):
         for j in range(i+1,len(A)):
             if A[j,i]!=0:
                 lam=A[j,i]/A[i,i]
-                for k in range(np.shape(A)[1]):
-                    A[j,k]=A[j,k]-float(lam*A[i,k])
-                # A[j,:]=A[j,:]-lam*A[i,:]
+                A[j,:]=A[j,:]-lam*A[i,:]
                 B[j]=B[j]-lam*B[i]
                 A,B=del_zero(A,B)
                 break
@@ -65,6 +74,8 @@ A,B=del_zero(A,B)
 
 #keep doing GE until the matrix are all the same
 def GE_BS(A,B):
+    #check if A[0,0]==0 if yew -> change the row
+    A,B=change_row(A,B)
     for _ in range(1000):
         A,B=GE(A,B)
         C=np.c_[A,B]
@@ -186,3 +197,48 @@ GE_BS(E,F)
 #  [ 0.          0.          6.33333333  6.33333333]]
 
 # i_ 1 = 0.9999999999999998   i_ 2 = 2.0   i_ 3 = 1.0000000000000002
+
+#test if A[0,0]==0, will the change_row function run?
+#original
+# A=np.float64([[1,-1,1]
+#              ,[-1,1,-1]
+#              ,[4,2,0]
+#              ,[0,2,5]])
+
+# B=np.float64([[0]
+#              ,[0]
+#              ,[8]
+#              ,[9]])
+
+#change the 1 and 4 row
+G=np.float64([[0,2,5]
+             ,[-1,1,-1]
+             ,[4,2,0]
+             ,[1,-1,1]])
+
+H=np.float64([[9]
+             ,[0]
+             ,[8]
+             ,[0]])
+
+
+GE_BS(G,H)
+#results:
+# [[-1.  1. -1.  0.]
+#  [ 0.  2.  5.  9.]
+#  [ 0.  6. -4.  8.]
+#  [ 1. -1.  1.  0.]]
+
+# [[-1.  1. -1.  0.]
+#  [ 0.  2.  5.  9.]
+#  [ 0.  6. -4.  8.]]
+
+# [[ -1.   1.  -1.   0.]
+#  [  0.   2.   5.   9.]
+#  [  0.   0. -19. -19.]] 
+
+# [[ -1.   1.  -1.   0.]
+#  [  0.   2.   5.   9.]
+#  [  0.   0. -19. -19.]]
+
+# i_ 1 = 1.0   i_ 2 = 2.0   i_ 3 = 1.0

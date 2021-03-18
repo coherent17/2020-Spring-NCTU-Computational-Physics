@@ -1,15 +1,18 @@
 import numpy as np
 
-A=np.array([[1,-1,1]
-           ,[-1,1,-1]
-           ,[4,2,0]
-           ,[0,2,5]])
+#note that the datatype of the matrix should be float
+#or the element during GE may be wrong
 
-B=np.array([[0]
-           ,[0]
-           ,[8]
-           ,[9]])
+#original
+A=np.float64([[1,-1,1]
+             ,[-1,1,-1]
+             ,[4,2,0]
+             ,[0,2,5]])
 
+B=np.float64([[0]
+             ,[0]
+             ,[8]
+             ,[9]])
 
 #if there is any row filling with 0 
 #delete it
@@ -31,7 +34,9 @@ def GE(A,B):
         for j in range(i+1,len(A)):
             if A[j,i]!=0:
                 lam=A[j,i]/A[i,i]
-                A[j,:]=A[j,:]-lam*A[i,:]
+                for k in range(np.shape(A)[1]):
+                    A[j,k]=A[j,k]-float(lam*A[i,k])
+                # A[j,:]=A[j,:]-lam*A[i,:]
                 B[j]=B[j]-lam*B[i]
                 A,B=del_zero(A,B)
                 break
@@ -59,12 +64,81 @@ def BS(A,B):
 A,B=del_zero(A,B)
 
 #keep doing GE until the matrix are all the same
-for _ in range(1000):
-    A,B=GE(A,B)
-    C=np.c_[A,B]
-    A,B=GE(A,B)
-    D=np.c_[A,B]
-    if (C==D).all():
-        break
+def GE_BS(A,B):
+    for _ in range(1000):
+        A,B=GE(A,B)
+        C=np.c_[A,B]
+        A,B=GE(A,B)
+        D=np.c_[A,B]
+        if (C==D).all():
+            break
+    BS(A,B)
 
-BS(A,B)
+GE_BS(A,B)
+#result:
+# [[ 1. -1.  1.  0.] 
+#  [ 4.  2.  0.  8.] 
+#  [ 0.  2.  5.  9.]]
+
+# [[ 1. -1.  1.  0.]
+#  [ 0.  6. -4.  8.]
+#  [ 0.  2.  5.  9.]]
+
+# [[ 1.         -1.          1.          0.        ]
+#  [ 0.          6.         -4.          8.        ]
+#  [ 0.          0.          6.33333333  6.33333333]]
+
+# [[ 1.         -1.          1.          0.        ]
+#  [ 0.          6.         -4.          8.        ]
+#  [ 0.          0.          6.33333333  6.33333333]]
+
+# i_ 1 = 0.9999999999999998   i_ 2 = 2.0   i_ 3 = 1.0000000000000002
+
+
+
+#note that there might be a little bit wrong to the right answer
+#because lambda can't be divided
+
+#now we change the sequence of the original array test whether the solution are the same
+
+#original
+# A=np.float64([[1,-1,1]
+#              ,[-1,1,-1]
+#              ,[4,2,0]
+#              ,[0,2,5]])
+
+# B=np.float64([[0]
+#              ,[0]
+#              ,[8]
+#              ,[9]])
+
+#testing matrix change the 3 and 4 row can it get the same value?
+C=np.float64([[1,-1,1]
+             ,[-1,1,-1]
+             ,[0,2,5]
+             ,[4,2,0]])
+
+D=np.float64([[0]
+             ,[0]
+             ,[9]
+             ,[8]])
+
+GE_BS(C,D)
+#result:
+# [[ 1. -1.  1.  0.]
+#  [ 0.  2.  5.  9.]
+#  [ 4.  2.  0.  8.]]
+
+# [[ 1. -1.  1.  0.]
+#  [ 0.  2.  5.  9.]
+#  [ 0.  6. -4.  8.]]
+
+# [[  1.  -1.   1.   0.]
+#  [  0.   2.   5.   9.]
+#  [  0.   0. -19. -19.]]
+
+# [[  1.  -1.   1.   0.]
+#  [  0.   2.   5.   9.]
+#  [  0.   0. -19. -19.]]
+
+# i_ 1 = 1.0   i_ 2 = 2.0   i_ 3 = 1.0

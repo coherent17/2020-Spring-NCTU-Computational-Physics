@@ -49,6 +49,7 @@ def GE(A,B):
                 B[j]=B[j]-lam*B[i]
                 A,B=del_zero(A,B)
                 break
+        #break the outer for loop
         else:
             continue
         break

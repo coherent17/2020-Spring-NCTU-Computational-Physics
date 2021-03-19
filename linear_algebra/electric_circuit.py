@@ -226,6 +226,8 @@ H=np.float64([[9]
 
 GE_BS(G,H)
 #results:
+
+#we can observe that here change the row 1 and 2
 # [[-1.  1. -1.  0.]
 #  [ 0.  2.  5.  9.]
 #  [ 0.  6. -4.  8.]

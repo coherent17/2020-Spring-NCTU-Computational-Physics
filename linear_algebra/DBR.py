@@ -19,7 +19,7 @@ def DBR(layer):
 
         P_2=np.array([[cmath.exp(-1j*(1.38*(2*cmath.pi*(550/(4*1.38))/i)+0j)),0]
                     ,[0,cmath.exp(1j*(1.38*(2*cmath.pi*(550/(4*1.38))/i)+0j))]])
-
+        #M=(D1^-1)D2P2(D2^-1)D1P1
         M=np.matmul(np.matmul(np.matmul(np.matmul(np.matmul(np.linalg.pinv(D_1),D_2),P_2),np.linalg.pinv(D_2)),D_1),P_1)
 
         for j in range(layer):

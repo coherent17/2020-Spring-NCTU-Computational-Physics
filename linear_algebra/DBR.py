@@ -25,9 +25,7 @@ def DBR(layer):
         for j in range(layer):
             M=np.matmul(M,M)
         
-        C=M[1,0]
-        A=M[0,0]
-        r=C/A
+        r=M[1,0]/M[0,0]
         R.append(r.real**2+r.imag**2)
 
     return R

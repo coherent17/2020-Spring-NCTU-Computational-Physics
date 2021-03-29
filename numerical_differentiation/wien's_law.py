@@ -56,11 +56,11 @@ l_4500=get_max_lamda(y_4500)
 l_5000=get_max_lamda(y_5000)
 l_5500=get_max_lamda(y_5500)
 
-print(l_3500)
-print(l_4000)
-print(l_4500)
-print(l_5000)
-print(l_5500)
+print(l_3500[0]*3500)
+print(l_4000[0]*4000)
+print(l_4500[0]*4500)
+print(l_5000[0]*5000)
+print(l_5500[0]*5500)
 
 
 plt.plot(x,y_3500,label="$3500K$")

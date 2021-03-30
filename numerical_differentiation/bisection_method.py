@@ -1,10 +1,8 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
 
-
 def f(x):
     return (x**2)-3*x-10
-
 
 # a:left bound
 # b:right bound
@@ -26,10 +24,11 @@ def bisection(a,b,eps):
 
     return a, iteration
 
-
 #to generate the different eps
+N=30
 error=[]
-for i in range(1,16,1):
+for i in range(1,N,1):
+    #eps from 10^-1 ~ 10^-N
     error.append((10**-i))
 
 #to stroe the different iteration with the different eps
@@ -38,16 +37,21 @@ iteration_eps=[]
 #to store the root of different eps
 root=[]
 
+#calculate the iteration times in different eps and the root
 for i in error:
     rt,it=bisection(4.2,6.3,i)
     root.append(rt)
     iteration_eps.append(it)
 
+print("the root in different eps is:")
 print(root)
+print("the iteration times in different eps is:")
+print(iteration_eps)
 
-x=np.arange(1,16,1)
+#visualize the graph
+x=np.arange(1,N,1)
 plt.plot(x,iteration_eps)
-plt.title("different eps vs iteration times")
+plt.title("different eps $vs$ iteration times")
 plt.xlabel("$-log(eps)$")
 plt.ylabel("iteration times")
 plt.show()

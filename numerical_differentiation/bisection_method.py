@@ -55,3 +55,7 @@ plt.title("different eps $vs$ iteration times")
 plt.xlabel("$-log(eps)$")
 plt.ylabel("iteration times")
 plt.show()
+
+#conclusion:
+#because the graph is almost a straight line with the x-axis in log scale
+#therefore, we can figure that the iteration is almost increase in power scale

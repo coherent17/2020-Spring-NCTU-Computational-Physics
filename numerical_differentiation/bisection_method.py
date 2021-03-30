@@ -26,15 +26,12 @@ def bisection(a,b,eps):
 
     return a, iteration
 
-root,iteration=bisection(4.2,6.5,0.0000001)
-
 
 #to generate the different eps
 error=[]
-for i in range(5,15):
+for i in range(1,16,1):
     error.append((10**-i))
 
-      
 #to stroe the different iteration with the different eps
 iteration_eps=[]
 
@@ -46,6 +43,11 @@ for i in error:
     root.append(rt)
     iteration_eps.append(it)
 
+print(root)
 
-plt.plot(error,iteration_eps)
+x=np.arange(1,16,1)
+plt.plot(x,iteration_eps)
+plt.title("different eps vs iteration times")
+plt.xlabel("$-log(eps)$")
+plt.ylabel("iteration times")
 plt.show()

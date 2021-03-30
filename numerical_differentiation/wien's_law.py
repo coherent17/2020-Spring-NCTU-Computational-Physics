@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N=1001
+N=100001
 initial=1
 final=2000
 x=np.linspace(initial,final,N)
@@ -14,7 +14,9 @@ def Wien(T):
     for i in x:
         k=1.380649*(10**-23)
         hc=1.98644586*(10**-25)
-        y.append(8*np.pi*hc/((i*(10**-9))**5)/(np.exp(hc/(i*(10**-9))/k/T)-1))
+        #*(10**-3):J->kJ
+        #*(10**9):m->nm
+        y.append(8*np.pi*hc/((i*(10**-9))**5)/(np.exp(hc/(i*(10**-9))/k/T)-1)*(10**-3))
     return y
 
 
@@ -70,6 +72,6 @@ plt.plot(x,y_5000,label="$5000K$")
 plt.plot(x,y_5500,label="$5500K$")
 plt.title("Wien's law")
 plt.xlabel("wavelength(λ)  (nm)")
-plt.ylabel("Spectral energy density")
+plt.ylabel("Spectral energy density ($kJ/m^4$)")
 plt.legend()
 plt.show()

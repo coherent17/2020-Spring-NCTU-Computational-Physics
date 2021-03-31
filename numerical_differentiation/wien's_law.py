@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N=100001
+N=10001
 initial=1
 final=2000
 x=np.linspace(initial,final,N)
@@ -13,7 +13,6 @@ def Wien(T):
         k=1.380649*(10**-23)
         hc=1.98644586*(10**-25)
         #*(10**-3):J->kJ
-        #*(10**9):m->nm
         y.append(8*np.pi*hc/((i*(10**-9))**5)/(np.exp(hc/(i*(10**-9))/k/T)-1)*(10**-3))
     return y
 
@@ -66,6 +65,7 @@ print("At 5500K,\tλ_max=%.5f(nm)"%(l_5500[0]),"\t","λ_max*T=%.6f(mm*K)"%(l_550
 λmax_avg=np.mean([l_3500[0]*3500*(10**-6),l_4000[0]*4000*(10**-6),l_4500[0]*4500*(10**-6),l_5000[0]*5000*(10**-6),l_5500[0]*5500*(10**-6)])
 print("the average of the Wien's distribution law is=%.5f(mm*K)"%(λmax_avg))
 
+#visualize
 plt.plot(x,y_3500,label="$3500K$")
 plt.plot(x,y_4000,label="$4000K$")
 plt.plot(x,y_4500,label="$4500K$")

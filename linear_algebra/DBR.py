@@ -30,16 +30,12 @@ def DBR(layer):
 
     return R
 
-R2=DBR(2)
-R3=DBR(3)
-R4=DBR(4)
-R5=DBR(5)
-R6=DBR(6)
+R2=DBR(1)
+R4=DBR(2)
+R6=DBR(3)
 
 plt.plot(list,R2,label="2 layers")
-plt.plot(list,R3,label="3 layers")
 plt.plot(list,R4,label="4 layers")
-plt.plot(list,R5,label="5 layers")
 plt.plot(list,R6,label="6 layers")
 plt.title("VCSEL reflectance $R$ versus the wavelength $λ$")
 plt.xlabel("wavelength $λ$  (nm)")

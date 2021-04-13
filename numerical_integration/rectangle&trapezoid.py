@@ -22,32 +22,46 @@ def rectangle_rule(initial,final,N):
     return np.sum(y)
 
 #test the step vs the error and the percentage
-test_step=np.arange(1,1100,100)
+test_step=np.arange(100,5100,100)
 area=[]
 error=[]
 percentage=[]
 for i in test_step:
     area.append(rectangle_rule(0,10,i))
     error.append(rectangle_rule(0,10,i)-1000)
-    percentage.append((rectangle_rule(0,10,i)-1000)/(rectangle_rule(0,10,i)))
+    percentage.append((rectangle_rule(0,10,i)-1000)/(rectangle_rule(0,10,i))*100)
 
 #visualize
 fig=plt.figure(figsize=(18,6))
-ax1=fig.add_subplot(121)
-ax1.plot(test_step,error)
-ax1.set_title("the step versus the error")
-ax1.set_ylabel("error from the exact value")
+ax1=fig.add_subplot(131)
+ax1.plot(test_step,area,label="rectangle rule area")
+ax1.plot(test_step,[1000]*len(area),label="exact area")
+ax1.set_title("exact vs rectangle rule value",fontsize=10)
+ax1.set_ylabel("area")
 ax1.set_xlabel("the steps")
 ax1.grid(True)
+ax1.legend()
 
-ax2=fig.add_subplot(122)
-ax2.plot(test_step,percentage)
-ax2.set_title("the step versus the error percentage")
-ax2.set_ylabel("error percentage")
+ax2=fig.add_subplot(132)
+ax2.plot(test_step,error)
+ax2.set_title("the step versus the error",fontsize=10)
+ax2.set_ylabel("error from the exact value")
 ax2.set_xlabel("the steps")
 ax2.grid(True)
+
+ax3=fig.add_subplot(133)
+ax3.plot(test_step,percentage)
+ax3.set_title("the step vs the error percentage",fontsize=10)
+ax3.set_ylabel("error percentage(%)")
+ax3.set_xlabel("the steps")
+ax3.grid(True)
 plt.show()
 
+print("rectangle rule")
+print("test_step")
+print(test_step)
+print("area")
+print(area)
 
 #trapezoid rule (decrease the error from the rectangle rule)
 def trapezoid_rule(initial,final,N):
@@ -62,7 +76,7 @@ def trapezoid_rule(initial,final,N):
     return np.sum(y)
 
 #test the step vs the error and the percentage
-test_step=np.arange(100,1100,100)
+test_step=np.arange(100,5100,100)
 area=[]
 error=[]
 percentage=[]
@@ -73,17 +87,32 @@ for i in test_step:
 
 #visualize
 fig=plt.figure(figsize=(18,6))
-ax1=fig.add_subplot(121)
-ax1.plot(test_step,error)
-ax1.set_title("the step versus the error")
-ax1.set_ylabel("error from the exact value")
+ax1=fig.add_subplot(131)
+ax1.plot(test_step,area,label="trapezoid rule area")
+ax1.plot(test_step,[1000]*len(area),label="exact area")
+ax1.set_title("exact vs rectangle rule value",fontsize=10)
+ax1.set_ylabel("area")
 ax1.set_xlabel("the steps")
 ax1.grid(True)
+ax1.legend()
 
-ax2=fig.add_subplot(122)
-ax2.plot(test_step,percentage)
-ax2.set_title("the step versus the error percentage")
-ax2.set_ylabel("error percentage")
+ax2=fig.add_subplot(132)
+ax2.plot(test_step,error)
+ax2.set_title("the step versus the error",fontsize=10)
+ax2.set_ylabel("error from the exact value")
 ax2.set_xlabel("the steps")
 ax2.grid(True)
+
+ax3=fig.add_subplot(133)
+ax3.plot(test_step,percentage)
+ax3.set_title("the step versus the error percentage",fontsize=10)
+ax3.set_ylabel("error percentage(%)")
+ax3.set_xlabel("the steps")
+ax3.grid(True)
 plt.show()
+
+print("trapezoid rule")
+print("test_step")
+print(test_step)
+print("area")
+print(area)

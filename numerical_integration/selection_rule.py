@@ -48,9 +48,9 @@ area_s=[]#simpson
 area_r=[]#rectangle
 area_t=[]#trapezoid
 for i in range(2,10+1):
-    area_s.append(simpson_rule(0,10,30,1,i,10)**2)
-    area_r.append(rectangle_rule(0,10,30,1,i,10)**2)
-    area_t.append(trapezoid_rule(0,10,30,1,i,10)**2)
+    area_s.append(simpson_rule(0,10,500,1,i,10)**2)
+    area_r.append(rectangle_rule(0,10,500,1,i,10)**2)
+    area_t.append(trapezoid_rule(0,10,500,1,i,10)**2)
 
 #visualize
 # (simpson part)

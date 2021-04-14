@@ -101,3 +101,27 @@ ax6.set_xlabel("$n^{\prime}$")
 ax6.grid(True)
 
 plt.show()
+
+#all in one graph:
+fig=plt.figure(figsize=(18,6))
+ax1=fig.add_subplot(121)
+ax1.plot(ind,area_t,label="trapezoid rule")
+ax1.plot(ind,area_r,label="rectangle rule")
+ax1.plot(ind,area_s,label="simpson rule")
+ax1.set_title("different method",fontsize=10)
+ax1.set_ylabel("$\\vert V_{n^{\prime}n}^2 \\vert$")
+ax1.set_xlabel("$n^{\prime}$")
+ax1.grid(True)
+ax1.legend()
+
+ax2=fig.add_subplot(122)
+ax2.plot(ind[1:],area_t[1:],label="trapezoid rule")
+ax2.plot(ind[1:],area_r[1:],label="rectangle rule")
+ax2.plot(ind[1:],area_s[1:],label="simpson rule")
+ax2.set_title("different method (zoom in)",fontsize=10)
+ax2.set_ylabel("$\\vert V_{n^{\prime}n}^2 \\vert$")
+ax2.set_xlabel("$n^{\prime}$")
+ax2.grid(True)
+ax2.legend()
+
+plt.show()

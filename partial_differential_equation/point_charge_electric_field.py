@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#plus delta to avoid the singular points
 def electric_potential(xx,yy):
     delta=0.0001
     return 1/np.sqrt(xx**2+yy**2+delta)

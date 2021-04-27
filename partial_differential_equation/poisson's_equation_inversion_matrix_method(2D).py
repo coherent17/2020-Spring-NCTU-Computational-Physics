@@ -41,6 +41,10 @@ fig=plt.figure(figsize=(18,6))
 ax1=fig.add_subplot(121)
 V_temp=V.reshape(N,N)
 ax1.plot(x,V_temp[int((N-1)/2),:])
+ax1.set_title('V plane divide by $y=L/2$')
+ax1.set_xlabel('x')
+ax1.set_ylabel('V')
+ax1.grid(True)
 
 #contourf
 ax2=fig.add_subplot(122)
@@ -50,10 +54,14 @@ xx,yy=np.meshgrid(x_con,y_con)
 z=V_temp
 plt.contourf(xx,yy,z,cmap='rainbow')
 plt.colorbar()
+ax2.set_title('V plane contour')
+ax2.set_xlabel('x')
+ax2.set_ylabel('y')
 plt.show()
 
 #contourf3D
 fig=plt.figure()
 ax=plt.axes(projection='3d')
-ax.contourf3D(xx,yy,z,levels=1001)
+mappable=ax.contourf3D(xx,yy,z,levels=1001,cmap='rainbow')
+fig.colorbar(mappable, ax=ax)
 plt.show()

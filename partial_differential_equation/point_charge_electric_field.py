@@ -14,7 +14,7 @@ def dVy(xx,yy):
     delta=0.0001
     return 1*yy/np.sqrt(xx**2+yy**2+delta)
 
-N=51
+N=101
 x=np.linspace(-1,1,N)
 y=np.linspace(-1,1,N)
 xx,yy=np.meshgrid(x,y)

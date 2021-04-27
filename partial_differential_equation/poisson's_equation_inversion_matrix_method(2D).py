@@ -33,6 +33,7 @@ h=L/(N-1)
 lam=1
 x=np.linspace(0,L,N)
 A=coefficient_matrix(N)
+print(A)
 rho=rho(N,h,lam)
 V=(-h**2*np.linalg.inv(A)@rho)
 

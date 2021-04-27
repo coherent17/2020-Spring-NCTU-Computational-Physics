@@ -30,11 +30,11 @@ x=h*np.arange(0,N)
 
 
 A=coefficient_matrix(N)
+print(A)
 rho=rho(N)
 V=-h*np.linalg.inv(A)@rho
 
 plt.plot(x,V)
 plt.xlabel('x(L)')
 plt.ylabel('V ($\sigma/\epsilon_0 \epsilon_b$)')
-plt.legend()
 plt.show()

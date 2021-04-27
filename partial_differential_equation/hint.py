@@ -33,11 +33,11 @@ y = np.linspace(0,L,n)
 rho = np.zeros((n**2,1),dtype=float)
 lam = 1
 rho[int((n**2-1)/2),0] = lam/h**2
-print(rho)
+print(rho.shape)
 A = Building_mat(n,n)
 V = np.matmul(np.linalg.inv(A),-h**2*rho)
 # print(rho)
-# print(V)
+print(V.shape)
 
 plt.figure(figsize=(8,5))
 plt.plot(np.linspace(0,n,n),V.reshape(n,n)[int((n-1)/2),::],marker='o',markersize=12,linestyle = '-',linewidth = 3,label='numerical')

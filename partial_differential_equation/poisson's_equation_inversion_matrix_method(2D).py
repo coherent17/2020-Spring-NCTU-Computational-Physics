@@ -37,11 +37,13 @@ rho=rho(N,h,lam)
 V=(-h**2*np.linalg.inv(A)@rho)
 
 #reshape the potential draw the middle of the potential
+fig=plt.figure(figsize=(18,6))
+ax1=fig.add_subplot(121)
 V_temp=V.reshape(N,N)
-plt.plot(x,V_temp[int((N-1)/2),:])
-plt.show()
+ax1.plot(x,V_temp[int((N-1)/2),:])
 
 #contourf
+ax2=fig.add_subplot(122)
 x_con=np.linspace(0,L,N)
 y_con=np.linspace(0,L,N)
 xx,yy=np.meshgrid(x_con,y_con)
@@ -53,6 +55,5 @@ plt.show()
 #contourf3D
 fig=plt.figure()
 ax=plt.axes(projection='3d')
-ax.contour3D(xx,yy,z)
+ax.contourf3D(xx,yy,z,levels=1001)
 plt.show()
-

@@ -3,6 +3,13 @@ np.set_printoptions(threshold=np.inf)
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
+#parameter
+L=1
+N=51
+h=L/(N-1)
+lam=1 #linear density of the charge
+x=np.linspace(0,L,N) #grid point
+
 def coefficient_matrix(N):
     A=np.zeros((N**2,N**2))
     for i in range(0,N**2):
@@ -23,32 +30,29 @@ def coefficient_matrix(N):
 
 def rho(N,h,lam):
     rho=np.zeros((N**2,1))
-    rho[int((N**2-1)/2),0]=lam/(h**2)
+    rho[int((N**2-1)/2),0]=lam/(h**2) #delta function
     return rho
 
+def main(): #calculate the potential by inversion matrix
+    A=coefficient_matrix(N)
+    rh=rho(N,h,lam)
+    V=(-h**2*np.linalg.inv(A)@rh)
+    return V
 
-L=1
-N=51
-h=L/(N-1)
-lam=1
-x=np.linspace(0,L,N)
-A=coefficient_matrix(N)
-print(A)
-rho=rho(N,h,lam)
-V=(-h**2*np.linalg.inv(A)@rho)
+V=main()
 
-#reshape the potential draw the middle of the potential
+#visualize
 fig=plt.figure(figsize=(18,6))
-ax1=fig.add_subplot(121)
-V_temp=V.reshape(N,N)
+ax1=fig.add_subplot(122)
+V_temp=V.reshape(N,N)   #reshape the potential draw the middle of the potential
 ax1.plot(x,V_temp[int((N-1)/2),:])
-ax1.set_title('V plane divide by $y=L/2$')
+ax1.set_title('V distribution divide by $y=L/2 plane$')
 ax1.set_xlabel('x')
 ax1.set_ylabel('V')
 ax1.grid(True)
 
 #contourf
-ax2=fig.add_subplot(122)
+ax2=fig.add_subplot(121)
 x_con=np.linspace(0,L,N)
 y_con=np.linspace(0,L,N)
 xx,yy=np.meshgrid(x_con,y_con)
@@ -63,6 +67,9 @@ plt.show()
 #contourf3D
 fig=plt.figure()
 ax=plt.axes(projection='3d')
-mappable=ax.contourf3D(xx,yy,z,levels=1001,cmap='rainbow')
-fig.colorbar(mappable, ax=ax)
+mappable=ax.contourf3D(xx,yy,z,levels=501,cmap='rainbow')
+fig.colorbar(mappable, ax=ax,label='$V$')
+ax.set_title('2D poisson equation with 3D contour')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
 plt.show()

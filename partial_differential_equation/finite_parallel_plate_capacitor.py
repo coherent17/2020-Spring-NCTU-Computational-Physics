@@ -49,7 +49,7 @@ while(True):
 #visualize
 fig=plt.figure(figsize=(18,6))
 ax=fig.add_subplot(121)
-z=V
+z=V_new
 plt.contourf(xx,yy,z,cmap='rainbow',levels=51)
 plt.colorbar()
 ax.set_title('V plane contour')

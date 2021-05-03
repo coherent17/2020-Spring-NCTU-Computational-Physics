@@ -61,18 +61,23 @@ def FDM2(n):
     return V_new
 
 def contour_draw(V):
+    #electrostatic potential and electric field
     fig=plt.figure(figsize=(18,6))
     ax=fig.add_subplot(121)
     y=V
     plt.contourf(xx,zz,y,cmap='rainbow',levels=51)
+    v,u=np.gradient(y)
+    ax.quiver(xx,zz,-u,-v)
     plt.colorbar()
     ax.set_title('V plane contour')
     ax.set_xlabel('x')
     ax.set_ylabel('z')
 
+    #section
+    z=16
     ax1=fig.add_subplot(122)
-    ax1.plot(x,V[16,:])
-    ax1.set_title('z=16 section')
+    ax1.plot(x,V[z,:])
+    ax1.set_title('z=%d section' %(z))
     ax1.set_xlabel('x')
     ax1.set_ylabel('V')
     plt.show()

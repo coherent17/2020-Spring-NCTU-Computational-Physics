@@ -32,39 +32,48 @@ def Hamiltonian(V):
 V=potential(potential_value)
 H=Hamiltonian(V)
 
+#sort the eigenvalue and get the corresponding eigenvector
 eigenvalue,eigenvector=np.linalg.eig(H)
 idx=np.argsort(eigenvalue)
 eigenvalue=eigenvalue[idx]
 eigenvector=eigenvector[:,idx]
 
-fig=plt.figure(figsize=(15,5))
-ax1=fig.add_subplot(121)
+#visualize
+fig=plt.figure(figsize=(18,6))
+ax1=fig.add_subplot(131)
 x=np.linspace(0,10,11)
 ax1.plot(x,eigenvalue[0:11],'r.',label='numerical')
 ax1.set_xlabel('n')
-ax1.set_ylabel('$E_n$')
+ax1.set_ylabel('$E_n (meV)$')
 ax1.set_title('eigen energies')
 ax1.grid(True)
 ax1.legend()
 
-ax2=fig.add_subplot(122)
+ax2=fig.add_subplot(132)
 x=np.linspace(-5,5,301)
+#x/lamda_0
+x=x/(np.sqrt(2)*10**(10-9)/np.pi)
 y1=eigenvector[:,0]
 y2=eigenvector[:,1]
 y3=eigenvector[:,2]
 y4=eigenvector[:,3]
 y5=eigenvector[:,4]
-ax2.plot(x,(y1**2),label='$Ψ_{n=0}(x)$')
-ax2.plot(x,(y2**2),label='$Ψ_{n=1}(x)$')
-ax2.plot(x,(y3**2),label='$Ψ_{n=2}(x)$')
-ax2.plot(x,(y4**2),label='$Ψ_{n=3}(x)$')
-# ax2.plot(x,np.sqrt(y5**2),label='$Ψ_{n=4}(x)$')
-ax2.plot(x,V.reshape(301,),label='potential')
-ax2.set_xlabel('position (x)')
-ax2.set_ylabel('wave function square')
-ax2.set_title('The probability of the lowest eigen state')
-ax2.set_ylim(0,0.03)
-ax2.set_xlim(-1.75,1.75)
+ax2.plot(x,(y1),label='$Ψ_{n=0}(x)$')
+ax2.plot(x,(y2),label='$Ψ_{n=1}(x)$')
+ax2.plot(x,(y3),label='$Ψ_{n=2}(x)$')
+ax2.set_xlabel('position ($x/λ_0$) ')
+ax2.set_ylabel('wavefunction')
+ax2.set_title('wave function in different eigen state')
 ax2.legend()
 ax2.grid(True)
+
+ax3=fig.add_subplot(133)
+ax3.plot(x,(y1**2),label='$Ψ^2_{n=0}(x)$')
+ax3.plot(x,(y2**2),label='$Ψ^2_{n=1}(x)$')
+ax3.plot(x,(y3**2),label='$Ψ^2_{n=2}(x)$')
+ax3.set_xlabel('position ($x/λ_0$) ')
+ax3.set_ylabel('square wavefunction')
+ax3.set_title('probability distribution in finite barrier well')
+ax3.grid(True)
+ax3.legend()
 plt.show()

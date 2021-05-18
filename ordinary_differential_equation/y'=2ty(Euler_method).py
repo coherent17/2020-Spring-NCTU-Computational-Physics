@@ -26,7 +26,7 @@ for i in range(0,N):
     y.append(Euler(y[i],g[i],h))
     t.append(t[i]+h)
 
-plt.plot(t,y,"b.",label='RK2')
+plt.plot(t,y,"b.",label='Euler method')
 plt.plot(t,np.exp(np.asarray(t)**2-1),'r',label='analytic')
 plt.legend(loc='best')
 plt.xlabel('t')

@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 #parameter:
 gamma=0.5 #damping coefficient
-omega_0=1.0 #LC circuit natural frequency
+omega_0=1.0 # natural frequency
 N=2000
 h=0.01
 t=np.arange(N)*h

@@ -32,14 +32,14 @@ def g2(y1,y2):
     return (-y1-(gamma/omega_0)*y2)
 
 #calculate the value of the next moment by RK2 method
-def y_rk2(y1i,y2i):#with (w1,w2,alpha,beta) = (0.5,0.5,1,1)
-    k=g1(y1i,y2i)
-    q=g2(y1i,y2i)
-    kk=g1(y1i+h*k,y2i+h*q)
-    qq=g2(y1i+h*k,y2i+h*q)
-    y1_ip1=y1i+h*(0.5*k+0.5*kk)
-    y2_ip1=y2i+h*(0.5*q+0.5*qq)
-    return y1_ip1,y2_ip1
+def y_rk2(y1,y2):#with (w1,w2,alpha,beta) = (0.5,0.5,1,1)
+    k1=g1(y1,y2)
+    q1=g2(y1,y2)
+    k2=g1(y1+h*k1,y2+h*q1)
+    q2=g2(y1+h*k1,y2+h*q1)
+    y1_prime=y1+h*(0.5*k1+0.5*k2)
+    y2_prime=y2+h*(0.5*q1+0.5*q2)
+    return y1_prime,y2_prime
 
 def SHO():
     x=[]
@@ -52,21 +52,18 @@ def SHO():
         v.append(b)
     return x,v
 
-x,v=SHO()
-fig, ax = plt.subplots(figsize=(10,6))
-ax.plot(t/np.pi, x, label="x(t)")
-ax.plot(t/np.pi, v, label="v(t)")
+def visualize(x,v):
+    plt.plot(t/np.pi, x, label="x(t)")
+    plt.plot(t/np.pi, v, label="v(t)")
+    plt.axhline(y=1, linestyle="--")
+    plt.axhline(y=-1, linestyle="--")
+    plt.title("RK2, SHO with $\gamma/\omega0=$%1.1f/%1.1f, x(0)=%1.1f,v(0)=%1.1f"%(gamma,omega_0, x0, v0),fontsize=15)
+    plt.xlabel("$t/\pi$",fontsize=15)
+    plt.ylabel("$y_n(t)$",fontsize=15)
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=10)
+    plt.legend(fontsize=15)
+    plt.show()
 
-ax.axhline(y=1, linestyle="--")
-ax.axhline(y=-1, linestyle="--")
-ax.set_title(\
-             "RK2, SHO with $\gamma/\omega0=$%1.1f/%1.1f, x(0)=%1.1f,v(0)=%1.1f"\
-             %(gamma,omega_0, x0, v0),fontsize=20)
-    # "\": change line
-plt.xlabel("$t/\pi$",fontsize=25)
-plt.ylabel("$y_n(t)$",fontsize=25)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-#plt.ylim(0.0,1.1)
-ax.legend(fontsize=25)
-plt.show()
+x,v=SHO()
+visualize(x,v)

@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #parameter:
-e=6.33 #charge voltage (volt)
+e=300 #charge voltage (volt)
 R=0.8 #(ohm)
 L=2.5 #(h)
 C=0.3 #(F)
 N=3000 
 h=0.01
 t=np.arange(N)*h
-omega=1/np.sqrt(L*C)
+omega=10000
 
 #initial condition:
 q0=C*e

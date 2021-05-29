@@ -63,6 +63,7 @@ def visualize(x,v,gamma_i):
     plt.legend()
     plt.show()
 
+#main function:
 for j in gamma:
     x,v=SHO(j)
     visualize(x,v,j)

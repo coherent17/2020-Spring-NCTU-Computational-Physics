@@ -27,7 +27,7 @@ def y_rk2(y1,y2,ti):#with (w1,w2,alpha,beta) = (0.5,0.5,1,1)
     k1=g1(y1,y2)
     q1=g2(y1,y2,ti)
     k2=g1(y1+h*k1,y2+h*q1)
-    q2=g2(y1+h*k1,y2+h*q1,ti)
+    q2=g2(y1+h*k1,y2+h*q1,ti+h)
     y1_prime=y1+h*(0.5*k1+0.5*k2)
     y2_prime=y2+h*(0.5*q1+0.5*q2)
     return y1_prime,y2_prime

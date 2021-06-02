@@ -8,13 +8,13 @@ m=2.3*(10**(-26))           #(kg)
 omega_0=5*2*np.pi*(10**12)  #(rad/s)
 N=3*(10**28)                #(m^-3)
 e=1.6*(10**(-19))           #(C)      
-omega=0.1*omega_0           #(rad/s)
+omega=0.1*omega_0           #(rad/s)  <--------change here to simulate different omega
 E_0=70*(10**9)              #(V/m)
 
 #grid point setting:
 initial=0
 final=150
-N_p=1500
+N_p=15000
 t=np.linspace(initial,final,N_p)
 h=(t[1]-t[0])*np.pi/omega_0
 
@@ -69,12 +69,13 @@ for i in range(len(x)-1):
 plt.plot(t,x,color="red",label='$x(t)/nm$')
 plt.plot(t,v,color="green",label='$v(t)/30000(m/s)$')
 plt.plot(t,Electric_field(t),color="blue",label='$E(t)/E_0$')
-plt.plot()
-plt.xlabel("$\omega_0t/\pi$")
+plt.xlabel("$\omega_0t/\pi$",fontsize=16)
 plt.title('Lorentz model solved with RK2, $\omega/\omega_0=%.2f$' %(omega/omega_0),fontsize=20)
 plt.legend(loc='lower right',fontsize=16)
 plt.ylim(-1,1)
 plt.xlim(0,150)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
 plt.show()
 
 

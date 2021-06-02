@@ -1,19 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
+np.set_printoptions(threshold=np.inf)
 
 #parameter:
 m=2.3*(10**(-26))           #(kg)
-𝛾=1.1*(10**12)              #(rad/s)
+𝛾=1.15*(10**12)             #(rad/s)
 omega_0=5*2*np.pi*(10**12)  #(rad/s)
 N=3*(10**28)                #(m^-3)
-e=1.6*(10**(-19))           #(C)
+e=1.6*(10**(-19))           #(C)      
 omega=0.1*omega_0           #(rad/s)
 E_0=70*(10**9)              #(V/m)
 
 #grid point setting:
 initial=0
 final=150
-N_p=15000
+N_p=1500
 t=np.linspace(initial,final,N_p)
 h=(t[1]-t[0])*np.pi/omega_0
 
@@ -21,7 +22,6 @@ h=(t[1]-t[0])*np.pi/omega_0
 x0=0
 v0=0
 
-#defint the time-dependent force:
 def g1(y2):
     return (y2)
 
@@ -71,7 +71,22 @@ plt.plot(t,v,color="green",label='$v(t)/30000(m/s)$')
 plt.plot(t,Electric_field(t),color="blue",label='$E(t)/E_0$')
 plt.plot()
 plt.xlabel("$\omega_0t/\pi$")
-plt.legend()
+plt.title('Lorentz model solved with RK2, $\omega/\omega_0=%.2f$' %(omega/omega_0),fontsize=20)
+plt.legend(loc='lower right',fontsize=16)
 plt.ylim(-1,1)
 plt.xlim(0,150)
+plt.show()
+
+
+#visualize the Magnification
+x1=[0.1,0.5,0.7,0.75,0.9,0.95,0.97]
+y1=[0.5,0.6,0.75,1.2,2.2,4.2,7.1]
+x2=[1.03,1.05,1.1,1.25,2]
+y2=[7,4.2,2.2,0.9,0.375]
+plt.plot(x1,y1,label='(a),(b)')
+plt.plot(x2,y2,label='(c),(d)')
+plt.xlabel('$\omega/\omega_0$')
+plt.ylabel('Amplitude of the x(t) at steady-state 1/(nm)')
+plt.title("the Magnification relationship")
+plt.legend()
 plt.show()

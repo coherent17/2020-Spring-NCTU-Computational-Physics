@@ -11,7 +11,7 @@ np.set_printoptions(threshold=np.inf)
 m=2.3*(10**(-26))            #(kg)
 omega_0=5*2*np.pi*(10**12)   #(rad/s)
 N=3*(10**28)                 #(m^-3)
-𝛾=1.1*(10**12)               #(rad/s)
+𝛾=1.15*(10**12)              #(rad/s)
 e=1.6*(10**(-19))            #(C)
 ε_0=8.854*(10**-12)          #(Farad/m)
 
@@ -21,7 +21,7 @@ k=N*(e**2)/(ε_0*m)
 #grid points
 initial=0
 final=20
-N_p=1000
+N_p=1500
 omega=np.linspace(initial,final,N_p)
 
 def refractive_index(omega):
@@ -34,10 +34,11 @@ n=[]
 for i in range(len(omega)):
     n.append(refractive_index(omega[i]*2*np.pi*(10**12)))
 print(n)
-plt.plot(omega,n)
+plt.plot(omega,n,linewidth=5,color='r')
 plt.xlabel('Frequency ($10^{12}Hz$)')
 plt.ylabel('Refractive index')
 plt.title('$NaCl$ frequency - refractive index')
 plt.ylim(0,8)
+plt.xlim(0,20)
 plt.grid(True)
 plt.show()

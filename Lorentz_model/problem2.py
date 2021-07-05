@@ -59,7 +59,7 @@ v_diff=[]
 
 #deal with the unit of x(t) and v(t)
 for i in range(len(x)):
-    x[i]=x[i]*(10**9)
+    x[i]=x[i]/(10**-9)
     v[i]=v[i]/30000
 
 #use two points method to get the value of v by dx/dt
@@ -67,7 +67,7 @@ for i in range(len(x)-1):
     v_diff.append((x[i+1]-x[i])/h)
 
 plt.plot(t,x,color="red",label='$x(t)/nm$')
-plt.plot(t,v,color="green",label='$v(t)/30000(m/s)$')
+plt.plot(t,v,color="green",label='$v(t)/30000 (m/s)$')
 plt.plot(t,Electric_field(t),color="blue",label='$E(t)/E_0$')
 plt.xlabel("$\omega_0t/\pi$",fontsize=16)
 plt.title('Lorentz model solved with RK2, $\omega/\omega_0=%.2f$' %(omega/omega_0),fontsize=20)
